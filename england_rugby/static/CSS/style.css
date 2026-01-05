@@ -1,0 +1,100 @@
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+html,body {
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 4.375rem;
+    background-image: url('/static/images/techimage.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    image-rendering: auto;
+}
+
+main {
+    flex: 1;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    padding: 2rem 1rem;
+    gap: 2rem
+}
+
+nav {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    z-index: 1000%;
+    background-color: #131137;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: rgb(121, 7, 127);
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: yellow;         /* color on hover */
+}
+
+.color {
+    color: blue;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #131137;
+    color: rgb(121, 7, 127);
+    padding: 1rem;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;   /* stack items vertically */
+    align-items: center;      /* center them horizontally */
+    gap: 0.5rem;
+}
+
+.footer-text {
+    color: #888; /* normal color */
+    transition: color 0.3s; /* smooth color change */
+}
+
+.footer-text:hover {
+    color: yellow !important; /* color on hover */
+    cursor: pointer; /* optional: makes it feel interactive */
+}
+
+
+.social-links {
+    display: flex;
+    justify-content: space-evenly;  /* spreads links */
+    width: 100%;                    /* full width row */
+}
+
+.social-links a {
+    color: rgb(121, 7, 127);
+    text-decoration: none;
+    transition: color 0.3s; /* smooth color change */
+}
+
+.social-links a:hover {
+    color: yellow; /* change color on hover */
+}
