@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>England - Rugby | Home</title>
+    <title>{% block title %}England - Rugby{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
     <script defer src="{% static 'JS/england-rugby.js' %}"></script>
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
@@ -15,17 +15,27 @@
 </head>
 
 <body>
-    <nav>
-        <a href="{% url 'index' %}">Home</a>
-        {% comment %}
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'register' %}">Register</a>
-        <a href="{% url 'admin:index' %}">admin</a>
-        {% endcomment %}
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{% url 'index' %}">England Rugby</a>
+        </div>
 
+        <div class="nav-links" id="nav-links">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'tournament' %}">Tournament</a>
+            <a href="{% url 'tournament-detail' %}">Tournament Detail</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'admin:index' %}">Admin</a>
+        </div>
+
+        <div class="hamburger" id="hamburger">&#9776;</div>
     </nav>
+
+
+
 
     <main>
         {% block content %}
@@ -44,5 +54,13 @@
         </div>
     </footer>
 </body>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+</script>
 
 </html>
