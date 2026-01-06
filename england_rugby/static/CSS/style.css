@@ -14,7 +14,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     padding-top: 4.375rem;
-    background-image: url('/static/images/techimage.jpg');
+    background-image: url('/static/images/cup-parade.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -28,7 +28,7 @@ main {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 2rem 1rem;
     gap: 2rem
 }
@@ -39,7 +39,7 @@ nav {
     left:0;
     width: 100%;
     z-index: 1000%;
-    background-color: #131137;
+    background-color: #120d71;
     padding: 1rem;
     display: flex;
     justify-content: space-around;
@@ -48,7 +48,7 @@ nav {
 }
 
 nav a {
-    color: rgb(121, 7, 127);
+    color: #f8046f;
     transition: color 0.3s;
 }
 
@@ -57,12 +57,37 @@ nav a:hover {
 }
 
 .color {
-    color: blue;
+    color: yellow;
     cursor: pointer;
 }
 
+.return-home a {
+  display: inline-block;      /* treat as a block for layout */
+  text-align: center;         /* center text horizontally */
+  position: relative;         /* for possible overlay positioning */
+  text-decoration: none;
+}
+
+.return-home a img {
+  display: block;             /* ensures text goes under the image */
+  max-width: 100%;            /* optional: responsive */
+  height: auto;
+}
+
+.return-home a span {
+  display: block;             /* force text under the image */
+  margin-top: 0.5rem;         /* spacing between image and text */
+  font-weight: bold;          /* optional styling */
+  color: yellow;
+}
+
+/* Hover effect */
+.return-home a:hover span {
+  color: red;
+}
+
 footer {
-    background-color: #131137;
+    background-color: #120d71;
     color: rgb(121, 7, 127);
     padding: 1rem;
     margin-top: auto;
@@ -73,7 +98,7 @@ footer {
 }
 
 .footer-text {
-    color: #888; /* normal color */
+    color: #f8046f; /* normal color */
     transition: color 0.3s; /* smooth color change */
 }
 
@@ -90,7 +115,7 @@ footer {
 }
 
 .social-links a {
-    color: rgb(121, 7, 127);
+    color: #f8046f;
     text-decoration: none;
     transition: color 0.3s; /* smooth color change */
 }
