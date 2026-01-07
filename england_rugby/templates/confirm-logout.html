@@ -14,4 +14,11 @@
 
 
 <p class="color">This is the confirm logout page.</p>
+
+<form method="post" action="{% url 'confirm_logout' %}"  class="confirm-logout-form">
+    {% csrf_token %}
+    <button id="clg" type="submit">Confirm Logout</button>
+    <a href="{% url 'index' %}" class="cancel-link">Cancel</a>
+</form>
+
 {% endblock %}

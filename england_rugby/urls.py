@@ -10,5 +10,5 @@ urlpatterns = [
     path('tournament-detail/', views.tournament_detail,
          name='tournament-detail'),
     path('register/', views.register, name='register'),
-    path('confirm-logout/', views.confirm_logout, name='confirm-logout'),
+    path('confirm-logout/', views.confirm_logout, name='confirm_logout'),
 ]

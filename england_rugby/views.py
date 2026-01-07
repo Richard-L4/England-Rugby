@@ -30,4 +30,4 @@ def register(request):
 
 
 def confirm_logout(request):
-    return render(request, 'confirm_logout.html')
+    return render(request, 'confirm-logout.html')
