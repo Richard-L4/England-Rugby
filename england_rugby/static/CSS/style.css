@@ -15,7 +15,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   padding-top: 4.375rem;
-  background-image: url("/static/images/cup-parade.jpg");
+  background-image: url('https://copilot.microsoft.com/th/id/BCO.1870228a-8de1-4203-80dc-2855ae616972.png');
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
