@@ -417,4 +417,18 @@ footer {
   color: yellow; /* change color on hover */
 }
 
+@media screen and (max-width: 480px) {
+  body {
+    background-attachment: scroll;
+  }
 
+  .form-map-container {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    padding-top: 3.5rem;
+  }
+}
