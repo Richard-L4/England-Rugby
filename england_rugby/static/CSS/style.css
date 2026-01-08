@@ -87,6 +87,29 @@ main {
   z-index: 10; /* always on top */
 }
 
+
+/* Logged in badge */
+.auth-badge {
+    display: inline-block;       /* makes it only as wide as the text */
+    background-color: #120d71;   /* light blue */
+    color: #f8046f;              /* dark text */
+    padding: 5px 12px;           /* smaller padding */
+    border-radius: 20px;         /* rounded like a badge */
+    font-weight: 600;            /* bold text */
+    font-size: 0.9rem;           /* slightly smaller text */
+    margin: 10px auto;           /* vertical margin, centered */
+    text-align: center;          
+    border: 1px solid #b3e0ff;  /* optional border */
+}
+
+/* center it under navbar */
+body > .auth-badge {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Small screens */
 @media screen and (max-width: 940px) {
   .nav-links {

@@ -34,7 +34,11 @@
         <div class="hamburger" id="hamburger">&#9776;</div>
     </nav>
 
-
+    {% if user.is_authenticated and request.path != '/login' %}
+    <div class="auth-badge">
+        You are logged in as {{ user.username }}.
+    </div>
+    {% endif %}
 
 
     <main>
