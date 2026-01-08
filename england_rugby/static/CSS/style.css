@@ -182,11 +182,27 @@ body > .auth-badge {
 =========================== */
 .form-map-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10rem;
+  justify-content: center;      /* centers the two items horizontally */
+  align-items: center;      /* aligns top edges */
+  gap: 12rem;                    /* space between form and map */
+  margin: 2rem auto;            /* spacing from top content + centered */
+  max-width: 1200px;            /* keeps layout neat on large screens */
+  padding: 0 1rem;              /* prevents touching screen edges */
+  flex-wrap: wrap;
+}
+
+#form,
+.map {
+  flex: 1 1 300px;   /* min width: 300px so they don’t collapse */
+}
+
+#map {
   width: 100%;
-  padding: 2rem;
+  height: 400px;                /* good default height */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border: 14px solid #120d71 !important;  
+  border-radius: 8px;
 }
 
 #form {
@@ -305,6 +321,13 @@ body > .auth-badge {
   border: 0.5rem solid rgb(203 46 211);
   border-radius: 8px;
 }
+
+@media screen and (min-width: 1500px) {
+  .form-map-container {
+    gap: 22rem; /* adjust this value to clear your header */
+  }
+}
+
 /* Screens 802px and smaller */
 @media screen and (max-width: 802px) {
   .alert {
