@@ -30,7 +30,7 @@ main {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 2rem 1rem;
   gap: 2rem;
 }
@@ -214,7 +214,8 @@ body > .auth-badge {
 =========================== */
 .form-map-container {
   display: flex;
-  justify-content: center;      /* centers the two items horizontally */
+  flex-direction: column;
+  justify-content: flex-start;      /* centers the two items horizontally */
   align-items: center;      /* aligns top edges */
   gap: 12rem;                    /* space between form and map */
   margin: 2rem auto;            /* spacing from top content + centered */
@@ -458,16 +459,25 @@ body > .auth-badge {
   }
 }
 
+@media screen and (max-height: 500px) {
+  body {
+    min-height: 100vh; /* reinforces full viewport */
+  }
+}
+
+
 footer {
   background-color: #120d71;
   color: rgb(121, 7, 127);
   padding: 1rem;
-  margin-top: auto;
   display: flex;
-  flex-direction: column; /* stack items vertically */
-  align-items: center; /* center them horizontally */
+  flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 
 .footer-text {
   color: #f8046f; /* normal color */
