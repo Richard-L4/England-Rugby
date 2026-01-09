@@ -24,14 +24,8 @@ def about(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(
-                request,
-                'about.html',
-                {
-                    'form': ContactForm(),
-                    'success': True
-                }
-            )
+            messages.success(request, "Your message has been submitted")
+            return redirect('about')
     else:
         form = ContactForm()
     return render(request, 'about.html', {'form': form})

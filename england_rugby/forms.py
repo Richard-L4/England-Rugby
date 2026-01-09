@@ -7,17 +7,16 @@ from django.contrib.auth.models import User
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ['name', 'email', 'phone', 'address']
+        fields = ['name', 'email', 'phone', 'message']
         labels = {
             'name': 'Full Name',
             'email': 'Email Address',
             'phone': 'Phone Number',
-            'address': 'Postal Address',
+            'message': 'Message',
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['address'].required = False
         self.fields['phone'].required = False
 
 

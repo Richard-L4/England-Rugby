@@ -6,10 +6,10 @@ class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
-    address = models.TextField()
+    message = models.TextField()
 
     def __str__(self):
-        return f"{self.name} | {self.email} | {self.phone} | {self.address}"
+        return f"{self.name} | {self.email} | {self.phone} | {self.message}"
 
     class Meta:
         verbose_name = "Contact"
