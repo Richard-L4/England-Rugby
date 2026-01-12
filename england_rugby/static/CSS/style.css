@@ -80,6 +80,11 @@ main {
   color: yellow;
 }
 
+nav a.active {
+  color: yellow;
+}
+
+
 .hamburger {
   display: none;
   font-size: 1.8rem;
@@ -129,6 +134,131 @@ main {
   .auth-badge {
     margin-top: 6rem; /* adjust this value as needed */
   }
+}
+
+/* Updated Cards Container for all screen sizes */
+.cards-container,
+.grid-container {
+  display: flex;            /* use flex instead of grid */
+  flex-wrap: wrap;          /* allow multiple cards to wrap */
+  justify-content: center;  /* center single or partial row */
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* Card sizing remains responsive */
+.card,
+.grid {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 350px;
+  padding: 1rem;
+  gap: 1rem;
+  flex: 1 1 300px;   /* allows card to grow/shrink responsively */
+  max-width: 350px;   /* prevents card from getting too wide */
+}
+
+
+/* Large screens: 3 per row */
+@media (min-width: 992px) {
+  .cards-container,
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Medium screens: 2+1 layout */
+@media (min-width: 768px) and (max-width: 991px) {
+  .cards-container,
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .cards-container .card:nth-child(1),
+  .grid-container .grid:nth-child(1) { order: 1; }
+  .cards-container .card:nth-child(2),
+  .grid-container .grid:nth-child(2) { order: 3; } /* second card goes to bottom */
+  .cards-container .card:nth-child(3),
+  .grid-container .grid:nth-child(3) { order: 2; } /* third card goes to middle */
+}
+
+/* Small screens: 1 per row */
+@media (max-width: 767px) {
+  .cards-container,
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual card styling */
+.card,
+.grid {
+  background-color: #120d71;
+  border: 2px solid yellow;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 350px;       /* taller cards */
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+  max-width: 350px;        /* prevents card from being too wide */
+}
+
+/* Make grid images fill most of the card */
+.grid img {
+    width: 100%;         /* fill card width */
+    height: auto;        /* maintain aspect ratio */
+    flex-grow: 1;        /* allow image to grow in card */
+    object-fit: cover;   /* crop if necessary without stretching */
+    border-radius: 8px 8px 0 0;
+}
+
+/* Keep description below the image, small height */
+.grid p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0;   /* small spacing above text */
+    flex-shrink: 0;       /* description doesn't shrink */
+}
+
+
+.card .read-more,
+.grid .read-more {
+  margin-top: 0.5rem;
+  text-decoration: none;
+  color: #0077b6;
+  font-weight: bold;
+}
+
+.card .read-more:hover,
+.grid .read-more:hover {
+  text-decoration: underline;
+}
+
+.card:hover,
+.grid:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 

@@ -8,15 +8,16 @@ from django.contrib import messages
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index.html', {'active_tab': 'index'})
 
 
 def tournament(request):
-    return render(request, 'tournament.html')
+    return render(request, 'tournament.html', {'active_tab': 'tournament'})
 
 
 def tournament_detail(request):
-    return render(request, 'tournament-detail.html')
+    return render(request, 'tournament-detail.html',
+                  {'active_tab': 'tournament-detail'})
 
 
 def about(request):
@@ -28,7 +29,7 @@ def about(request):
             return redirect('about')
     else:
         form = ContactForm()
-    return render(request, 'about.html', {'form': form})
+    return render(request, 'about.html', {'active_tab': 'about', 'form': form})
 
 
 def user_login(request):
@@ -43,7 +44,7 @@ def user_login(request):
                 return redirect('index')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login.html', {'active_tab': 'login', 'form': form})
 
 
 @login_required
@@ -51,7 +52,7 @@ def user_logout(request):
     if request.method == 'POST':
         logout(request)
         return redirect('index')
-    return render(request, 'logout.html')
+    return render(request, 'logout.html', {'active_tab': 'logout'})
 
 
 def register(request):
@@ -66,11 +67,13 @@ def register(request):
             return redirect('login')
     else:
         form = RegisterForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register.html',
+                  {'active_tab': 'register', 'form': form})
 
 
 def confirm_logout(request):
     if request.method == 'POST':
         logout(request)
         return redirect('index')
-    return render(request, 'confirm-logout.html')
+    return render(request, 'confirm-logout.html',
+                  {'active_tab': 'confirm-logout'})
