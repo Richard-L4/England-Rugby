@@ -6,12 +6,22 @@
 {% block content %}
 <h1 class="color">Welcome to The England Rubgy Tournament</h1>
 <h2 class="return-home">
-  <a href="{% url 'index' %}">
     <img src="{% static 'images/england-rugby.jpg' %}" alt="">
-    <span>Return home</span>
   </a>
 </h2>
 
 
-<p class="color">This is the tournament detail page. More content will go here.</p>
+<main class="card-detail-wrapper">
+  <div class="card-detail">
+    <img src="{% static 'images/' %}{{ card.image_name }}" alt="{{ card.title }}">
+    
+    <div class="card-content-box">
+      <h1>{{ card.title }}</h1>
+      <p>{{ card.content }}</p>
+    </div>
+
+    <a href="{% url 'tournament' %}">Back to tournament page</a>
+  </div>
+</main>
+
 {% endblock %}

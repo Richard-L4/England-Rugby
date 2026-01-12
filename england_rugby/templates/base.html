@@ -26,7 +26,9 @@
             <a href="{% url 'index' %}" class="{% if active_tab == 'index' %}active{% endif %}">Home</a>
             <a href="{% url 'about' %}" class="{% if active_tab == 'about' %}active{% endif %}">About</a>
             <a href="{% url 'tournament' %}" class="{% if active_tab == 'tournament' %}active{% endif %}">Tournament</a>
-            <a href="{% url 'tournament-detail' %}" class="{% if active_tab == 'tournament-detail' %}active{% endif %}">Tournament Detail</a>
+            {% if active_tab == 'tournament-detail' %}
+            <span class="{% if active_tab == 'tournament-detail' %}active{% endif %}">Tournament Detail</span>
+            {% endif %}
             <a href="{% url 'login' %}" class="{% if active_tab == 'login' %}active{% endif %}">Login</a>
             <a href="{% url 'logout' %}" class="{% if active_tab == 'logout'%}active{% endif %}">Logout</a>
             <a href="{% url 'register' %}" class="{% if active_tab == 'register' %}active{% endif %}">Register</a>

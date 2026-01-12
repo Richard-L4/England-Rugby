@@ -15,13 +15,26 @@
 <!-- CARD-->
 <div class="grid-container">
   <div class="grid">
-    <img src="{% static 'images/bus-tour.jpg' %}" alt="'" class="grid-img">
+    <img src="{% static 'images/bus-tour.jpg' %}" alt="default.jpg" class="grid-img">
   </div>
   <div class="grid">
-    <img src="{% static 'images/with-queen.jpg' %}" alt="" class="grid-img">
+    <img src="{% static 'images/with-queen.jpg' %}" alt="default.jpg" class="grid-img">
   </div>
   <div class="grid">
-    <img src="{% static 'images/squad-pic2.png' %}" alt="" class="grid-img">
+    <img src="{% static 'images/squad-pic2.png' %}" alt="default.jpg" class="grid-img">
   </div>
+</div>
+
+<!--Container for cards to lead to more details page-->
+<div class="cards-container">
+  {% for card in card_texts %}
+  <div class="card">
+    <img src="{% static 'images/' %}{{ card.image_name}}" alt="{{ card.title}}">
+    <p>{{ card.content|truncatechars:100 }}</p>
+    <a href="{% url 'tournament-detail' pk=card.id %}" class="read-more">Read more</a>
+  </div>
+  {% empty %}
+  <p>No cards yet</p>
+  {% endfor %}
 </div>
 {% endblock %}

@@ -76,6 +76,11 @@ main {
   transition: color 0.3s;
 }
 
+.nav-links span {
+  color: #120d71;
+  text-decoration: none;
+}
+
 .nav-links a:hover {
   color: yellow;
 }
@@ -84,6 +89,9 @@ nav a.active {
   color: yellow;
 }
 
+.nav-links span.active {
+  color: yellow;
+}
 
 .hamburger {
   display: none;
@@ -235,10 +243,12 @@ nav a.active {
 }
 
 /* Keep description below the image, small height */
-.grid p {
+.grid p,
+.card p {
     font-size: 0.9rem;
     margin: 0.5rem 0 0;   /* small spacing above text */
     flex-shrink: 0;       /* description doesn't shrink */
+    color: yellow;
 }
 
 
@@ -246,7 +256,7 @@ nav a.active {
 .grid .read-more {
   margin-top: 0.5rem;
   text-decoration: none;
-  color: #0077b6;
+  color: #f8046f;
   font-weight: bold;
 }
 
@@ -260,6 +270,54 @@ nav a.active {
   transform: translateY(-5px);
   box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
+
+.card-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  max-width: 800px;
+}
+
+.card-detail img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #007BFF; /* border only around image */
+  padding: 5px;
+  background-color: #fff;
+  border: 2px solid #120d71;    /* subtle border */
+}
+
+.card-content-box {
+  background-color: #ffffff; /* white box for content */
+  border: 2px solid #120d71;    /* subtle border */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100%;               /* fills max-width of card-detail */
+  box-sizing: border-box;
+}
+
+.card-detail a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #120d71; /* your solid color */
+  color: #f8046f;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s, background-color 0.2s;
+  border: 2px solid yellow;
+}
+
+.card-detail a:hover {
+  background-color: yellow; /* slightly darker for hover */
+  transform: translateY(-2px);
+  color: #111;
+}
+
 
 
 /* ===========================

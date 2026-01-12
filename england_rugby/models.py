@@ -14,3 +14,17 @@ class Contact(models.Model):
     class Meta:
         verbose_name = "Contact"
         verbose_name_plural = "Contacts"
+
+
+class CardText(models.Model):
+    title = models.CharField(max_length=20, blank=True)
+    content = models.TextField()
+    image_name = models.CharField(
+        max_length=30,
+        help_text="Enter the image filename (eg 'squad-pic.jpg')",
+        default='default.jpg',
+        blank=True
+    )
+
+    def __str__(self):
+        return self.title or f"Card for {self.image_name}"

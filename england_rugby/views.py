@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ContactForm, RegisterForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import CardText
 
 
 def index(request):
@@ -12,12 +13,16 @@ def index(request):
 
 
 def tournament(request):
-    return render(request, 'tournament.html', {'active_tab': 'tournament'})
+    card_texts = CardText.objects.all().order_by('id')
+    return render(request, 'tournament.html', {'active_tab': 'tournament',
+                                               'card_texts': card_texts})
 
 
-def tournament_detail(request):
+def tournament_detail(request, pk):
+    card = get_object_or_404(CardText, pk=pk)
     return render(request, 'tournament-detail.html',
-                  {'active_tab': 'tournament-detail'})
+                  {'active_tab': 'tournament-detail',
+                   'card': card})
 
 
 def about(request):
