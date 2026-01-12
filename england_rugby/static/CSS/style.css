@@ -231,6 +231,7 @@ nav a.active {
   gap: 1rem;
   width: 100%;
   max-width: 350px;        /* prevents card from being too wide */
+  cursor: pointer;
 }
 
 /* Make grid images fill most of the card */
