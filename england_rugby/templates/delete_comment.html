@@ -20,17 +20,18 @@
 <img src="{% static 'images/england-rugby.jpg' %}" alt="">
 
 
-<div class="form-map-container">
-
-  <section id="form">
-    <form id="contact-form" method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <a>Please enter password</a>
-      <button type="submit">Login</button>
-    </form>
-  </section>
-</div>
+<main class="card-detail-wrapper">
+    <div class="container">
+        <h1>Delete Comment</h1>
+        <p>Are you sure you want to delete this comment</p>
+        <p><em>"{{ comment.text }}"</em></p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Confirm Delete</button>
+            <a href="{% url 'tournament-detail' comment.card.pk %}">Cancel</a>
+        </form>
+    </div>
+</main>
 
 <h2 class="return-home">
   <a href="{% url 'index' %}">

@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ContactForm, RegisterForm
+from .forms import ContactForm, RegisterForm, CommentForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import CardText
+from .models import CardText, Comment
 from django.core.paginator import Paginator
 
 
@@ -24,9 +24,80 @@ def tournament(request):
 
 def tournament_detail(request, pk):
     card = get_object_or_404(CardText, pk=pk)
-    return render(request, 'tournament-detail.html',
-                  {'active_tab': 'tournament-detail',
-                   'card': card})
+    is_saved = False
+    if request.user.is_authenticated:
+        is_saved = card.saved_by.filter(pk=request.user.pk).exists()
+
+    if request.method == 'POST' and request.user.is_authenticated:
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.card = card
+            comment.save()
+            return redirect('tournament-detail', pk=card.pk)
+    else:
+        form = CommentForm()
+
+    comments = card.comments.all()
+
+    context = {
+        'card': card,
+        'comments': comments,
+        'form': form,
+        'is_saved': is_saved,
+        'active_tab': 'tournament-detail'
+    }
+    return render(request, 'tournament-detail.html', context)
+
+
+def comment_list(request):
+    comments = Comment.objects.all().order_by('-created_at')
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.save()
+            return redirect('comment_list')
+    else:
+        form = CommentForm()
+    return redirect(request, 'comment_list.html',
+                    {'comments': comments, 'form': form})
+
+
+@login_required
+def edit_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+
+    if request.user != comment.user:
+        return redirect('card_detail', pk=comment.card.pk)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('tournament-detail', pk=comment.card.pk)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'edit_comment.html', {
+        'form': form,
+        'comment': comment
+    })
+
+
+@login_required
+def delete_comment(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.user != comment.user:
+        return redirect('tournament-detail', pk=comment.card.pk)
+
+    if request.method == 'POST':
+        card_pk = comment.card.pk
+        comment.delete()
+        return redirect('tournament-detail', pk=card_pk)
+    return render(request, 'delete_comment.html', {'comment': comment})
 
 
 def about(request):

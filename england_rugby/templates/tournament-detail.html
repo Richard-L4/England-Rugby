@@ -6,7 +6,7 @@
 {% block content %}
 <h1 class="color">Welcome to The England Rubgy Tournament</h1>
 <h2 class="return-home">
-    <img src="{% static 'images/england-rugby.jpg' %}" alt="">
+  <img src="{% static 'images/england-rugby.jpg' %}" alt="">
   </a>
 </h2>
 
@@ -14,10 +14,45 @@
 <main class="card-detail-wrapper">
   <div class="card-detail">
     <img src="{% static 'images/' %}{{ card.image_name }}" alt="{{ card.title }}">
-    
+
     <div class="card-content-box">
       <h1>{{ card.title }}</h1>
       <p>{{ card.content }}</p>
+    </div>
+
+    <!-- COMMENTS SECTION -->
+    <div class="comments-section">
+
+      {% if user.is_authenticated %}
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Comment</button>
+      </form>
+      {% else %}
+      <p><a href="{% url 'login' %}">Log in to comment.</a></p>
+      {% endif %}
+      <h2>Comments</h2>
+
+      {% for comment in comments %}
+      <div class="comment" data-id="{{ comment.id }}">
+        <p><strong>{{ comment.user.username }}</strong> said:</p>
+        <p>{{ comment.text }}</p>
+        <small>{{ comment.created_at|date:"M d, Y H:i" }}</small>
+
+
+        {% if user == comment.user %}
+        <div class="actions">
+          <a href="{% url 'edit_comment' comment.pk %}">Edit</a> |
+          <a href="{% url 'delete_comment' comment.pk %}">Delete</a>
+        </div>
+        {% endif %}
+
+      </div>
+      {% empty %}
+      <hr>
+      <p class="no-comments">No comments yet</p>
+      {% endfor %}
     </div>
 
     <a href="{% url 'tournament' %}">Back to tournament page</a>

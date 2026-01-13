@@ -30,9 +30,13 @@
             <span class="{% if active_tab == 'tournament-detail' %}active{% endif %}">Tournament Detail</span>
             {% endif %}
             <a href="{% url 'login' %}" class="{% if active_tab == 'login' %}active{% endif %}">Login</a>
+            {% if user.is_authenticated %}
             <a href="{% url 'logout' %}" class="{% if active_tab == 'logout'%}active{% endif %}">Logout</a>
+            {% endif %}
             <a href="{% url 'register' %}" class="{% if active_tab == 'register' %}active{% endif %}">Register</a>
+            {% if user.is_staff %}
             <a href="{% url 'admin:index' %}">Admin</a>
+            {% endif %}
         </div>
 
         <div class="hamburger" id="hamburger">&#9776;</div>

@@ -5,7 +5,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  max-width: 100%;
+  /*max-width: 100%;*/
 }
 
 html, body {
@@ -36,8 +36,16 @@ main {
 }
 
 .color {
-  color:yellow
+  color: yellow;                       /* text color */
+  text-align: center;
+  margin: 1em auto;
+  padding: 0.5em 1em;                   /* subtle padding to keep size reasonable */
+  border: 2px solid yellow;           /* blue border */
+  border-radius: 8px;       
+  background: #120d71;
 }
+
+
 
 /* ===========================
    Navbar
@@ -337,14 +345,21 @@ nav a.active {
 }
 
 .return-home a span {
-  display: block;
-  margin-top: 0.5rem;
-  font-weight: bold;
-  color: yellow;
+  display: inline-block;
+  margin-top: 50px;
+  padding: 10px 20px;
+  background-color: #120d71; /* your solid color */
+  color: #f8046f;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s, background-color 0.2s;
+  border: 4px solid #f8046f;
 }
 
 .return-home a:hover span {
-  color: red;
+  background-color: yellow; /* slightly darker for hover */
+  transform: translateY(-2px);
+  color: #111;
 }
 
 /* ===========================
@@ -447,6 +462,168 @@ nav a.active {
   #contact-form { width: 100%; max-width: 400px; margin: 0; }
 }
 
+hr {
+  all: unset;
+  display: block;
+  height: 4px;
+  background-color: #120d71;
+  margin: 1.5em 0;
+}
+
+.no-comments {
+  color: #120d71;                  /* text in deep blue */
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 1em auto;
+  padding: 0.75em 1em;             /* some inner space */
+  border: 2px solid #120d71;       /* blue border */
+  background-color: rgba(18, 13, 113, 0.1); /* very light blue background */
+  border-radius: 8px;              /* rounded corners */
+  max-width: 300px;                /* optional, keeps it centered nicely */
+}
+
+
+
+/* ===========================
+   9. Comments / Buttons (Theme Colors)
+=========================== */
+.container {
+  max-width: 600px;
+  margin: 2em auto;
+  background: #fff;
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 2px solid #120d71;
+}
+
+.comment {
+  margin-bottom: 1em;
+  padding: 0.75em 1em;
+  background: #f9f9f9; /* subtle background for readability */
+  border-radius: 8px;
+}
+
+.comments-section h2 {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #120d71; /* your solid color */
+  color: #f8046f;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s, background-color 0.2s;
+  border: 2px solid yellow;
+}
+
+.comment {
+    margin-bottom: 1.5em;
+    margin-top: 3rem;
+    padding: 1em;
+    background: #f9f9f9;           /* light neutral background for readability */
+    border: 2px solid #120d71;     /* deep blue border from your theme */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+
+.comment p {
+  margin: 0.25em 0;
+  color: #120d71; /* deep blue for main text */
+  line-height: 1.4;
+}
+
+.comment p strong {
+  color: #f8046f; /* pink username */
+  font-weight: bold;
+}
+
+.comment small {
+  color: #555; /* dark gray for date/time, readable */
+  font-style: italic;
+  display: block;
+  margin-top: 0.3em;
+}
+
+button {
+  background: #120d71; 
+  color: #f8046f;
+  border: none;
+  padding: 0.4em 1em;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 2px solid yellow;
+}
+
+button:hover {
+ background: yellow; 
+ color: #111;
+}
+
+.form-control {
+    border: 2px solid #120d71; /* deep blue border matching your theme */
+    border-radius: 6px;         /* rounded corners */
+    padding: 0.5em;             /* some inner space */
+    outline: none;              /* remove default focus outline */
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: #f8046f;      /* pink border on focus */
+    box-shadow: 0 0 5px rgba(248, 4, 111, 0.5); /* subtle glow */
+}
+
+
+.actions a {
+  background: #120d71; 
+  color: #f8046f;
+  padding: 0.3em 0.8em;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-right: 0.5em;
+  font-size: 0.9em;
+  transition: background 0.2s;
+  border: 2px solid yellow;
+}
+
+.actions a:hover {
+  background: yellow; 
+  color: #111; 
+}
+
+.container a {
+  background: #120d71; 
+  color: #f8046f;
+  padding: 0.3em 0.8em;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-right: 0.5em;
+  font-size: 0.9em;
+  transition: background 0.2s;
+  border: 2px solid yellow;
+}
+
+.container a:hover {
+  background: yellow; 
+  color: #111; 
+}
+
+.comment .actions a {
+  margin: 0 0.3rem;
+  text-decoration: none;
+}
+
+.comment hr {
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+
 /* ===========================
    Footer
 =========================== */
@@ -519,6 +696,8 @@ footer {
   }
 }
 
+/* Pagination styles */
+
 .pagination {
     width: fit-content;
     margin: 2rem auto;      /* centers the whole block */
@@ -556,7 +735,6 @@ footer {
     background: #120d71;        /* dark background on hover */
     color: yellow;              /* text color changes */
 }
-
 
 
 /* ===========================

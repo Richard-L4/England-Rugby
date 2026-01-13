@@ -11,4 +11,6 @@ urlpatterns = [
          name='tournament-detail'),
     path('register/', views.register, name='register'),
     path('confirm-logout/', views.confirm_logout, name='confirm_logout'),
+    path('edit/<int:pk>/', views.edit_comment, name='edit_comment'),
+    path('delete/<int:pk>/', views.delete_comment, name='delete_comment'),
 ]
