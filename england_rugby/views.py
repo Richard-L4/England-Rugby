@@ -39,7 +39,7 @@ def tournament_detail(request, pk):
     else:
         form = CommentForm()
 
-    comments = card.comments.all()
+    comments = card.comments.all().order_by('-created_at')
 
     context = {
         'card': card,
@@ -49,22 +49,6 @@ def tournament_detail(request, pk):
         'active_tab': 'tournament-detail'
     }
     return render(request, 'tournament-detail.html', context)
-
-
-def comment_list(request):
-    comments = Comment.objects.all().order_by('-created_at')
-
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.user = request.user
-            comment.save()
-            return redirect('comment_list')
-    else:
-        form = CommentForm()
-    return redirect(request, 'comment_list.html',
-                    {'comments': comments, 'form': form})
 
 
 @login_required
