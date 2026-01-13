@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import CardText
+from django.core.paginator import Paginator
 
 
 def index(request):
@@ -14,8 +15,11 @@ def index(request):
 
 def tournament(request):
     card_texts = CardText.objects.all().order_by('id')
+    paginator = Paginator(card_texts, 2)  # max cards per page
+    page_number = request.GET.get('page')  # Get the ? page= value from the url
+    page_obj = paginator.get_page(page_number)  # auto handle invalid pages
     return render(request, 'tournament.html', {'active_tab': 'tournament',
-                                               'card_texts': card_texts})
+                                               'page_obj': page_obj})
 
 
 def tournament_detail(request, pk):

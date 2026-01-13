@@ -27,7 +27,7 @@
 
 <!--Container for cards to lead to more details page-->
 <div class="cards-container">
-{% for card in card_texts %}
+{% for card in page_obj %}
 <div class="card" data-url="{% url 'tournament-detail' pk=card.id %}" onclick="window.location=this.dataset.url">
 
 
@@ -40,4 +40,27 @@
 {% endfor %}
 
 </div>
+
+<!-- Paginator Controls -->
+<div class="pagination">
+  <div class="page-number">
+    <span class="page-info">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </span>
+  </div>
+
+  {% if page_obj.has_previous %}
+  <div class="prev-wrapper">
+    <a href="?page={{ page_obj.previous_page_number }}" class="prev-btn">« Previous</a>
+  </div>
+  {% endif %}
+
+  {% if page_obj.has_next %}
+  <div class="next-wrapper">
+    <a href="?page={{ page_obj.next_page_number }}" class="next-btn">Next »</a>
+  </div>
+  {% endif %}
+</div>
+
+
 {% endblock %}

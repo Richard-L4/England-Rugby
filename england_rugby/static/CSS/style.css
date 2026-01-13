@@ -519,6 +519,44 @@ footer {
   }
 }
 
+.pagination {
+    width: fit-content;
+    margin: 2rem auto;      /* centers the whole block */
+    padding: 1rem 1.5rem;   /* adds nice spacing */
+    background: #120d71;    /* your theme color */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #f8046f;
+}
+
+
+/* Pagination button wrappers */
+.pagination .prev-wrapper,
+.pagination .next-wrapper {
+    display: flex;
+    justify-content: center;     /* center <a> inside wrapper */
+}
+
+/* Pagination buttons */
+.pagination a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid yellow;
+    border-radius: 6px;
+    background: #0077b6;         /* blue button */
+    color: #f8046f;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+/* Hover effect */
+.pagination a:hover {
+    background: #120d71;        /* dark background on hover */
+    color: yellow;              /* text color changes */
+}
+
 
 
 /* ===========================
