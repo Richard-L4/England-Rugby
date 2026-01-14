@@ -156,16 +156,21 @@ def toggle_reaction(request, comment_id, reaction_type):
         existing = CommentReaction.objects.filter(user=request.user,
                                                   comment=comment).first()
 
-        if existing and existing.reaction == reaction_type:
-            existing.delete()
-            status = 'removed'
+        if existing:
+            if existing.reaction != reaction_type:
+                # Switch reaction
+                existing.reaction = reaction_type
+                existing.save()
+                status = 'changed'
+            else:
+                # Same reaction clicked, do nothing
+                status = 'unchanged'
         else:
-            CommentReaction.objects.update_or_create(
-                user=request.user,
-                comment=comment,
-                defaults={'reaction': reaction_type}
-            )
-            status = 'changed' if existing else 'added'
+            # No existing reaction, add new
+            CommentReaction.objects.create(user=request.user,
+                                           comment=comment,
+                                           reaction=reaction_type)
+            status = 'added'
 
         likes_count = comment.reactions.filter(reaction='like').count()
         dislikes_count = comment.reactions.filter(reaction='dislike').count()
