@@ -38,7 +38,7 @@ main {
 .color {
   color: yellow;                       /* text color */
   text-align: center;
-  margin: 1em auto;
+  margin: 0em auto;
   padding: 0.5em 1em;                   /* subtle padding to keep size reasonable */
   border: 2px solid yellow;           /* blue border */
   border-radius: 8px;       
