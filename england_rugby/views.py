@@ -5,8 +5,10 @@ from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import CardText, Comment
+from .models import CardText, Comment, CommentReaction
 from django.core.paginator import Paginator
+from django.http import JsonResponse
+from django.db import transaction
 
 
 def index(request):
@@ -141,3 +143,32 @@ def confirm_logout(request):
         return redirect('index')
     return render(request, 'confirm-logout.html',
                   {'active_tab': 'confirm-logout'})
+
+
+
+
+@login_required
+def toggle_reaction(request, comment_id, reaction_type):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'POST required'}, status=400)
+
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    with transaction.atomic():
+        existing = CommentReaction.objects.filter(user=request.user, comment=comment).first()
+
+        if existing and existing.reaction == reaction_type:
+            existing.delete()
+            status = 'removed'
+        else:
+            CommentReaction.objects.update_or_create(
+                user=request.user,
+                comment=comment,
+                defaults={'reaction': reaction_type}
+            )
+            status = 'changed' if existing else 'added'
+
+        likes_count = comment.reactions.filter(reaction='like').count()
+        dislikes_count = comment.reactions.filter(reaction='dislike').count()
+
+    return JsonResponse({'status': status, 'likes': likes_count, 'dislikes': dislikes_count})

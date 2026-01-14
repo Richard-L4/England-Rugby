@@ -13,4 +13,7 @@ urlpatterns = [
     path('confirm-logout/', views.confirm_logout, name='confirm_logout'),
     path('edit/<int:pk>/', views.edit_comment, name='edit_comment'),
     path('delete/<int:pk>/', views.delete_comment, name='delete_comment'),
+    path("toggle-reaction/<int:comment_id>/<str:reaction_type>/",
+         views.toggle_reaction,
+         name='toggle_reaction'),
 ]
