@@ -145,8 +145,6 @@ def confirm_logout(request):
                   {'active_tab': 'confirm-logout'})
 
 
-
-
 @login_required
 def toggle_reaction(request, comment_id, reaction_type):
     if request.method != 'POST':
@@ -155,7 +153,8 @@ def toggle_reaction(request, comment_id, reaction_type):
     comment = get_object_or_404(Comment, id=comment_id)
 
     with transaction.atomic():
-        existing = CommentReaction.objects.filter(user=request.user, comment=comment).first()
+        existing = CommentReaction.objects.filter(user=request.user,
+                                                  comment=comment).first()
 
         if existing and existing.reaction == reaction_type:
             existing.delete()
@@ -171,4 +170,5 @@ def toggle_reaction(request, comment_id, reaction_type):
         likes_count = comment.reactions.filter(reaction='like').count()
         dislikes_count = comment.reactions.filter(reaction='dislike').count()
 
-    return JsonResponse({'status': status, 'likes': likes_count, 'dislikes': dislikes_count})
+    return JsonResponse({'status': status, 'likes': likes_count,
+                         'dislikes': dislikes_count})
