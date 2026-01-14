@@ -349,7 +349,7 @@ nav a.active {
   margin-top: 50px;
   padding: 10px 20px;
   background-color: #120d71; /* your solid color */
-  color: #f8046f;
+  color: yellow;
   text-decoration: none;
   border-radius: 8px;
   transition: transform 0.2s, background-color 0.2s;
